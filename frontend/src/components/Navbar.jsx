@@ -1,14 +1,8 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar({ role, setRole }) {
   const navigate = useNavigate();
-  const [dark, setDark] = useState(false);
-
-  const toggleTheme = () => {
-    document.documentElement.classList.toggle("dark");
-    setDark(!dark);
-  };
 
   const logout = () => {
     setRole("");
@@ -29,9 +23,7 @@ export default function Navbar({ role, setRole }) {
         </span>
 
         {/* 🌗 Toggle */}
-        <button onClick={toggleTheme} className="text-xl">
-          {dark ? "🌞" : "🌙"}
-        </button>
+        <ThemeToggle />
 
         <button onClick={logout} className="text-red-500">
           Logout

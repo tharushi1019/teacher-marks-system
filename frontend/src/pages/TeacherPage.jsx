@@ -133,9 +133,7 @@ export default function TeacherPage({ setRole }) {
   };
 
   return (
-    <div className="min-h-screen p-6 space-y-6 
-      bg-gradient-to-br from-blue-50 via-white to-blue-100 
-      dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
+    <div className="min-h-screen p-6 space-y-6">
 
       <Navbar role="teacher" setRole={setRole} />
 
@@ -196,7 +194,7 @@ export default function TeacherPage({ setRole }) {
           </h2>
 
           <table className="w-full text-sm mb-6">
-            <thead className="bg-blue-600 text-white rounded-lg">
+            <thead className="table-head rounded-lg">
               <tr>
                 <th className="p-2">Rank</th>
                 <th className="p-2 text-left">Student</th>

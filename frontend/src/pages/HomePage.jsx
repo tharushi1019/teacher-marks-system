@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ThemeToggle from "../components/ThemeToggle";
 import API from "../services/api";
 
 export default function HomePage({ setRole }) {
@@ -14,9 +15,11 @@ export default function HomePage({ setRole }) {
   }, []);
 
   return (
-    <div className="min-h-screen 
-      bg-gradient-to-br from-blue-50 via-white to-blue-100 
-      dark:from-slate-950 dark:to-slate-900 p-6">
+    <div className="min-h-screen p-6 relative">
+
+      <div className="absolute top-6 right-6 z-50">
+        <ThemeToggle />
+      </div>
 
       {/* HERO */}
       <div className="glass p-8 text-center space-y-6 fade-in">

@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/*
+  🔑 CRITICAL: Force Tailwind v4 to use .dark class for dark mode
+  (Tailwind v4 defaults to prefers-color-scheme, which ignores our JS toggle)
+*/
+@variant dark (&:where(.dark, .dark *));
+
 /* 🌗 Smooth Dark Mode */
 html {
   transition: background 0.4s ease, color 0.4s ease;
@@ -25,6 +31,8 @@ html {
 .input-modern {
   @apply w-full px-4 py-2 rounded-xl 
          bg-white/80 dark:bg-slate-800
+         text-gray-800 dark:text-white
+         placeholder-gray-400 dark:placeholder-slate-500
          border border-gray-200 dark:border-slate-700
          focus:ring-2 focus:ring-blue-500 
          outline-none transition;
@@ -40,10 +48,15 @@ html {
   @apply px-2 py-1 text-xs rounded-full font-medium;
 }
 
-.badge-A { @apply bg-green-100 text-green-700; }
-.badge-B { @apply bg-blue-100 text-blue-700; }
-.badge-C { @apply bg-yellow-100 text-yellow-700; }
-.badge-F { @apply bg-red-100 text-red-700; }
+.badge-A { @apply bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-300; }
+.badge-B { @apply bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300; }
+.badge-C { @apply bg-yellow-100 text-yellow-700 dark:bg-yellow-900/50 dark:text-yellow-300; }
+.badge-F { @apply bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-300; }
+
+/* 📊 TABLE HEAD */
+.table-head {
+  @apply bg-blue-600 dark:bg-slate-700 text-white;
+}
 
 /* ✨ ANIMATION */
 .fade-in {

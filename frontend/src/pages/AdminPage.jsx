@@ -76,7 +76,7 @@ export default function AdminPage({ setRole }) {
   );
 
   return (
-    <div className="min-h-screen p-6 bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
+    <div className="min-h-screen p-6">
 
       <Navbar role="admin" setRole={setRole} />
 
@@ -161,7 +161,7 @@ export default function AdminPage({ setRole }) {
 
               <table className="w-full text-sm">
 
-                <thead className="bg-blue-600 text-white">
+                <thead className="table-head">
                   <tr>
                     <th className="p-2 text-left">Student</th>
                     <th className="p-2">Grade</th>

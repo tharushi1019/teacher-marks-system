@@ -12,12 +12,13 @@ export default function App() {
   return (
     <BrowserRouter>
 
-      {/* 🌈 GLOBAL BACKGROUND */}
-      <div className="min-h-screen 
-        bg-gradient-to-br 
-        from-blue-50 via-white to-blue-100 
+      {/* 🌈 GLOBAL BACKGROUND — single source of truth for all pages */}
+      <div className="min-h-screen
+        bg-gradient-to-br
+        from-blue-50 via-white to-blue-100
         dark:from-slate-950 dark:via-slate-900 dark:to-slate-800
-        transition-all duration-500">
+        text-gray-900 dark:text-gray-100
+        transition-colors duration-500">
 
         <Routes>
 
