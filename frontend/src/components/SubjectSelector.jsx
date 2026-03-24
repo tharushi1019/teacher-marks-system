@@ -9,7 +9,10 @@ const SubjectSelector = ({ setSubjectId }) => {
   }, []);
 
   return (
-    <select onChange={(e) => setSubjectId(e.target.value)}>
+    <select
+      className="input-modern"
+      onChange={(e) => setSubjectId(e.target.value)}
+    >
       <option>Select Subject</option>
       {subjects.map(sub => (
         <option key={sub._id} value={sub._id}>
