@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
 
-const StudentList = ({ setStudentId, setStudentName, refresh }) => {
+const StudentList = ({ setStudentId, setStudentName, grade, refresh }) => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    API.get("/students").then(res => setStudents(res.data));
-  }, [refresh]); // ✅ reload when refresh changes
+    if (grade) {
+      API.get(`/students?grade=${grade}`)
+        .then(res => setStudents(res.data));
+    } else {
+      setStudents([]);
+    }
+  }, [grade, refresh]);
 
   return (
     <select
       className="input-modern"
       onChange={(e) => {
-        const selectedOption = e.target.options[e.target.selectedIndex];
+        const selected = e.target.options[e.target.selectedIndex];
         setStudentId(e.target.value);
-
-        if (setStudentName) {
-          setStudentName(selectedOption.text); // ✅ send name
-        }
+        setStudentName(selected.text);
       }}
     >
       <option value="">Select Student</option>

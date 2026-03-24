@@ -1,70 +1,48 @@
 import { useState } from "react";
-import StudentList from "./components/StudentList";
-import MarksForm from "./components/MarksForm";
-import MarksTable from "./components/MarksTable";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import Login from "./components/Login";
+import TeacherPage from "./pages/TeacherPage";
+import AdminPage from "./pages/AdminPage";
 
 export default function App() {
-  const [studentId, setStudentId] = useState("");
-  const [studentName, setStudentName] = useState(""); // ✅ NEW
-  const [refresh, setRefresh] = useState(false);
+  const [role, setRole] = useState("");
 
   return (
-    <div className="min-h-screen px-6 py-10">
+    <BrowserRouter>
+      <Routes>
 
-      {/* DARK MODE */}
-      <button
-        onClick={() => document.documentElement.classList.toggle("dark")}
-        className="fixed top-4 right-4 btn-primary"
-      >
-        🌙
-      </button>
+        {/* LOGIN */}
+        <Route
+          path="/"
+          element={<Login setRole={setRole} />}
+        />
 
-      {/* HEADER */}
-      <h1 className="text-5xl font-bold text-center mb-10 
-                     bg-gradient-to-r from-blue-600 to-blue-400 
-                     bg-clip-text text-transparent animate-fade-in">
-        🎓 Teacher Dashboard
-      </h1>
+        {/* ADMIN */}
+        <Route
+          path="/admin"
+          element={
+            role === "admin" ? (
+              <AdminPage setRole={setRole} />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
 
-      {/* GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {/* TEACHER */}
+        <Route
+          path="/teacher"
+          element={
+            role === "teacher" ? (
+              <TeacherPage setRole={setRole} />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
 
-        {/* LEFT PANEL */}
-        <div className="glass p-6 space-y-6 animate-slide-up">
-
-          <div>
-            <label className="font-medium">Select Student</label>
-            <StudentList 
-              setStudentId={setStudentId}
-              setStudentName={setStudentName} // ✅ NEW
-              refresh={refresh}
-            />
-          </div>
-
-          <div>
-            <label className="font-medium">Enter Marks</label>
-            <MarksForm 
-              studentId={studentId} 
-              setRefresh={setRefresh}
-            />
-          </div>
-
-        </div>
-
-        {/* RIGHT PANEL */}
-        <div className="glass p-6 animate-slide-up delay-150">
-          <h2 className="text-xl font-semibold mb-4 text-blue-500">
-            Marks Overview
-          </h2>
-
-          <MarksTable 
-            studentId={studentId}
-            studentName={studentName} // ✅ NEW
-            refresh={refresh}
-          />
-        </div>
-
-      </div>
-    </div>
+      </Routes>
+    </BrowserRouter>
   );
 }

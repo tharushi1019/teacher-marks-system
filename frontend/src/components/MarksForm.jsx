@@ -14,16 +14,10 @@ const MarksForm = ({ studentId, setRefresh }) => {
 
     await API.post("/marks", { studentId, subjectId, marks });
 
-    // ✅ trigger table refresh
-    if (setRefresh) {
-      setRefresh(prev => !prev);
-    }
-
-    // ✅ reset input (better UX)
     setMarks("");
     setSubjectId("");
 
-    alert("Marks saved!");
+    setRefresh(prev => !prev);
   };
 
   return (
@@ -40,10 +34,7 @@ const MarksForm = ({ studentId, setRefresh }) => {
         onChange={(e) => setMarks(e.target.value)}
       />
 
-      <button 
-        onClick={handleSubmit}
-        className="btn-primary w-full mt-3"
-      >
+      <button onClick={handleSubmit} className="btn-primary w-full mt-3">
         Save Marks
       </button>
     </div>

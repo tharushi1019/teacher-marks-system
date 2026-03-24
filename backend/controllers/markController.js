@@ -44,3 +44,16 @@ export const getMarksByStudent = async (req, res) => {
     .populate("subjectId");
   res.json(marks);
 };
+
+// Get ALL marks (for dashboard)
+export const getAllMarks = async (req, res) => {
+  try {
+    const marks = await Mark.find()
+      .populate("subjectId")
+      .populate("studentId");
+
+    res.json(marks);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

@@ -16,13 +16,11 @@ const MarksTable = ({ studentId, studentName, refresh }) => {
     fetchMarks();
   }, [studentId, refresh]);
 
-  // DELETE
   const handleDelete = async (id) => {
     await API.delete(`/marks/${id}`);
     fetchMarks();
   };
 
-  // UPDATE
   const handleUpdate = async (id) => {
     const newMarks = prompt("Enter new marks:");
     if (!newMarks) return;
@@ -34,7 +32,7 @@ const MarksTable = ({ studentId, studentName, refresh }) => {
   return (
     <div>
 
-      {/* ✅ STUDENT NAME DISPLAY */}
+      {/* Student Name */}
       <div className="mb-4 p-3 rounded-xl bg-blue-100 dark:bg-blue-900/30">
         <p className="text-sm text-gray-500">Selected Student</p>
         <p className="text-lg font-semibold text-blue-600">
@@ -60,28 +58,23 @@ const MarksTable = ({ studentId, studentName, refresh }) => {
             </tr>
           ) : (
             marks.map((m) => (
-              <tr 
-                key={m._id} 
-                className="border-b border-gray-200 hover:bg-blue-50 transition"
-              >
+              <tr key={m._id} className="border-b hover:bg-blue-50">
                 <td className="p-3">{m.subjectId?.name}</td>
                 <td className="p-3">{m.marks}</td>
                 <td className="p-3 space-x-2">
-
-                  <button 
+                  <button
                     onClick={() => handleUpdate(m._id)}
-                    className="text-blue-500 hover:underline"
+                    className="text-blue-500"
                   >
                     Edit
                   </button>
 
-                  <button 
+                  <button
                     onClick={() => handleDelete(m._id)}
-                    className="text-red-500 hover:underline"
+                    className="text-red-500"
                   >
                     Delete
                   </button>
-
                 </td>
               </tr>
             ))

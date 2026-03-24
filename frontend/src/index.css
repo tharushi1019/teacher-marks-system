@@ -65,3 +65,26 @@ body {
 .animate-slide-up {
   animation: slide-up 0.7s ease-out;
 }
+
+body {
+  @apply bg-gradient-to-br from-slate-50 via-blue-50 to-white 
+         text-gray-800 transition-all duration-500;
+}
+
+.dark body {
+  @apply bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#020617] 
+         text-gray-200;
+}
+
+/* better glass */
+.glass {
+  @apply backdrop-blur-xl border rounded-2xl shadow-xl;
+}
+
+.glass {
+  @apply bg-white/70 border-white/30;
+}
+
+.dark .glass {
+  @apply bg-white/5 border-white/10 shadow-[0_0_40px_rgba(59,130,246,0.15)];
+}
