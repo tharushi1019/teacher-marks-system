@@ -149,8 +149,8 @@ export default function TeacherPage({ setRole }) {
           <select className="input-modern" onChange={(e) => setGrade(e.target.value)}>
             <option>Select Grade</option>
             {[...Array(13)].map((_, i) => (
-              <option key={i+1} value={(i+1).toString()}>
-                Grade {i+1}
+              <option key={i + 1} value={(i + 1).toString()}>
+                Grade {i + 1}
               </option>
             ))}
           </select>
@@ -182,7 +182,7 @@ export default function TeacherPage({ setRole }) {
           </button>
 
           <button onClick={exportPDF} className="btn-primary w-full">
-            Export Report (PDF)
+            Export Report (Coming Soon)
           </button>
         </div>
 
@@ -217,7 +217,7 @@ export default function TeacherPage({ setRole }) {
                   <tr key={stu._id} className="table-row border-b">
 
                     <td className="p-2 font-bold text-blue-500">
-                      #{index+1}
+                      #{index + 1}
                     </td>
 
                     <td className="p-2 font-medium">{stu.name}</td>
