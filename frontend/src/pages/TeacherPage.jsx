@@ -133,16 +133,20 @@ export default function TeacherPage({ setRole }) {
   };
 
   return (
-    <div className="min-h-screen p-6 space-y-6">
+    <div className="min-h-screen p-6 space-y-6 
+      bg-gradient-to-br from-blue-50 via-white to-blue-100 
+      dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
 
       <Navbar role="teacher" setRole={setRole} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {/* LEFT */}
-        <div className="glass p-6 space-y-4">
+        <div className="glass p-6 space-y-4 hover:shadow-2xl transition fade-in">
 
-          <h2 className="text-blue-500 font-semibold">Add Marks</h2>
+          <h2 className="text-blue-500 font-semibold text-lg">
+            Add Marks
+          </h2>
 
           <select className="input-modern" onChange={(e) => setGrade(e.target.value)}>
             <option>Select Grade</option>
@@ -182,19 +186,17 @@ export default function TeacherPage({ setRole }) {
           <button onClick={exportPDF} className="btn-primary w-full">
             Export Report (PDF)
           </button>
-
         </div>
 
         {/* RIGHT */}
-        <div className="glass p-6 overflow-x-auto" ref={reportRef}>
+        <div className="glass p-6 overflow-x-auto fade-in" ref={reportRef}>
 
-          <h2 className="text-blue-500 font-semibold mb-4">
+          <h2 className="text-blue-500 font-semibold mb-4 text-lg">
             Class Dashboard
           </h2>
 
-          {/* TABLE */}
           <table className="w-full text-sm mb-6">
-            <thead className="bg-blue-600 text-white">
+            <thead className="bg-blue-600 text-white rounded-lg">
               <tr>
                 <th className="p-2">Rank</th>
                 <th className="p-2 text-left">Student</th>
@@ -214,9 +216,13 @@ export default function TeacherPage({ setRole }) {
                 const grade = getGrade(avg);
 
                 return (
-                  <tr key={stu._id} className="border-b">
-                    <td className="p-2 text-blue-500 font-bold">#{index+1}</td>
-                    <td className="p-2">{stu.name}</td>
+                  <tr key={stu._id} className="table-row border-b">
+
+                    <td className="p-2 font-bold text-blue-500">
+                      #{index+1}
+                    </td>
+
+                    <td className="p-2 font-medium">{stu.name}</td>
 
                     {subjects.map(sub => {
                       const val = marksData?.[stu._id]?.[sub._id];
@@ -228,17 +234,21 @@ export default function TeacherPage({ setRole }) {
                       );
                     })}
 
-                    <td className="p-2">{avg}</td>
-                    <td className="p-2 font-bold">{grade}</td>
+                    <td className="p-2 font-semibold">{avg}</td>
+
+                    <td className="p-2">
+                      <span className={`badge badge-${grade}`}>
+                        {grade}
+                      </span>
+                    </td>
+
                   </tr>
                 );
               })}
             </tbody>
           </table>
 
-          {/* 📊 CHART */}
           <Bar data={chartData} />
-
         </div>
 
       </div>

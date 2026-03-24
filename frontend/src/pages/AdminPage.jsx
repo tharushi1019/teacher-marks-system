@@ -76,7 +76,7 @@ export default function AdminPage({ setRole }) {
   );
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen p-6 bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
 
       <Navbar role="admin" setRole={setRole} />
 
@@ -171,7 +171,7 @@ export default function AdminPage({ setRole }) {
 
                 <tbody>
                   {gradeStudents.map(s => (
-                    <tr key={s._id} className="border-b">
+                    <tr key={s._id} className="table-row border-b">
 
                       {/* EDIT MODE */}
                       {editId === s._id ? (

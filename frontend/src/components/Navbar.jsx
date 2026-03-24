@@ -1,39 +1,44 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ThemeToggle from "./ThemeToggle";
 
-const Navbar = ({ role, setRole }) => {
+export default function Navbar({ role, setRole }) {
   const navigate = useNavigate();
+  const [dark, setDark] = useState(false);
 
-  const handleLogout = () => {
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle("dark");
+    setDark(!dark);
+  };
+
+  const logout = () => {
     setRole("");
     navigate("/");
   };
 
   return (
-    <div className="glass flex justify-between items-center px-6 py-3 mb-6">
+    <div className="glass p-4 flex justify-between items-center fade-in">
 
-      <h1 className="text-lg font-semibold text-blue-500">
+      <h1 className="text-xl font-bold text-blue-500">
         🎓 School System
       </h1>
 
       <div className="flex items-center gap-4">
 
-        <span className="text-sm text-gray-500 capitalize">
+        <span className="text-sm opacity-70 capitalize">
           {role}
         </span>
 
-        <ThemeToggle />
+        {/* 🌗 Toggle */}
+        <button onClick={toggleTheme} className="text-xl">
+          {dark ? "🌞" : "🌙"}
+        </button>
 
-        <button
-          onClick={handleLogout}
-          className="text-red-500 hover:underline"
-        >
+        <button onClick={logout} className="text-red-500">
           Logout
         </button>
 
       </div>
+
     </div>
   );
-};
-
-export default Navbar;
+}
